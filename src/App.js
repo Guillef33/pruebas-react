@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import "./lista.css";
+import List from './components/List'
+import SocialMedia from "./components/SocialMedia";
+import { Routes, Route, Link } from "react-router-dom";
+import Timer from './components/Timer';
+import Count from './components/Count';
+// import CountdownOld from "./components/Countdowm";
+// import Countdown from './components/Countdown.js';
+import Javascript from './components/Javascript';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<SocialMedia />} />
+        <Route path="list" element={<List />} />
+        <Route path="timer" element={<Timer />} />
+        <Route path="counter" element={<Count />} />
+        {/* <Route path="countdown" element={<CountdownOld />} /> */}
+        {/* <Route path="contador" element={<Countdown />} /> */}
+        <Route path="javascript" element={<Javascript />} />
+      </Routes>
     </div>
   );
 }
