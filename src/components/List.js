@@ -8,20 +8,27 @@ import props from "prop-types"; // Las props que va a recibir nuestro componente
 // Errores de ejecucion
 // Errores que encontramos cuando el codigo no genera lo que buscamos, son los mas dificiles de buscar
 
-const lista = ["Medias", "VitelTone", "Caramelos"];
-
 function List() {
 
-  const [regalo, setRegalo] = useState('');
+  const [regalo, setRegalo] = useState({
+    addGift: "",
+    gifs: ["Medias", "VitelTone", "Caramelos"]
+  });
 
   function handleChange(e) {
-    setRegalo(e.target.value);
+    setRegalo({...regalo, addGift: e.target.value}); // mantiene lo que ya tiene y va agregando
   }
 
-  function handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-    lista.push(regalo);
+  function handleSubmit(e) {
+    e.preventDefault()
+    // los regalos son inmutables, entonces tenemos que crear uno nuevo
+    let newContainer = regalo.gifs;
+    newContainer.push(regalo.addGift);
+    setRegalo({
+      ...regalo, gifs: newContainer,
+      addGift: ""
+    })
+    // regalo.gifs.push(regalo);
   }
 
   return (
@@ -33,14 +40,14 @@ function List() {
             <input
               type="text"
               placeholder="Agrega regalo..."
-              value={regalo}
+              value={regalo.addGift}
               onChange={handleChange}
             />
             <input type="submit" value="Agregar" />
           </div>
         </form>
         <ul>
-          <RegalosList lista={lista} />
+          <RegalosList lista={regalo.gifs} />
         </ul>
       </div>
     </div>
