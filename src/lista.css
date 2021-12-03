@@ -47,3 +47,22 @@ font-size: 4em;
 .Lista li {
  font-weight: regular;
 }
+
+.Lista .addRegalo {
+  margin: 20px 0px;
+}
+
+.Lista input {
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 20px;
+
+}
+
+.Lista button {
+  background-color: brown;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+}
