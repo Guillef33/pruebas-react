@@ -21,7 +21,7 @@ function List() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    // los regalos son inmutables, entonces tenemos que crear uno nuevo
+    // los regalos son inmutables, entonces tenemos que crear uno nuevo, en este caso newContainer: hacemos una copia y lo pusheamos
     let newContainer = regalo.gifs;
     newContainer.push(regalo.addGift);
     setRegalo({
