@@ -9,26 +9,26 @@ import props from "prop-types"; // Las props que va a recibir nuestro componente
 // Errores que encontramos cuando el codigo no genera lo que buscamos, son los mas dificiles de buscar
 
 function List() {
-
   const [regalo, setRegalo] = useState({
     addGift: "",
-    gifs: ["Medias", "VitelTone", "Caramelos"]
+    deleteGift: "",
+    gifs: ["Medias", "Vitel tone", "Caramelos"],
+    // gifs: [{id:"1", title:"Medias"}, {id:"2", title :"Vitel Tone"}, {id:"3", title : "Caramelos"}]
   });
 
   function handleChange(e) {
-    setRegalo({...regalo, addGift: e.target.value}); // mantiene lo que ya tiene y va agregando
+    setRegalo({ ...regalo, addGift: e.target.value }); // mantiene lo que ya tiene y va agregando
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    // los regalos son inmutables, entonces tenemos que crear uno nuevo, en este caso newContainer: hacemos una copia y lo pusheamos
+    e.preventDefault();
     let newContainer = regalo.gifs;
     newContainer.push(regalo.addGift);
     setRegalo({
-      ...regalo, gifs: newContainer,
-      addGift: ""
-    })
-    // regalo.gifs.push(regalo);
+      ...regalo,
+      gifs: newContainer,
+      addGift: "",
+    });
   }
 
   return (
@@ -41,8 +41,7 @@ function List() {
               type="text"
               placeholder="Agrega regalo..."
               value={regalo.addGift}
-              onChange={handleChange}
-            />
+              onChange={handleChange}/>
             <input type="submit" value="Agregar" />
           </div>
         </form>
