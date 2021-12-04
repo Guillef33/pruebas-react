@@ -39,8 +39,7 @@ function RegalosList ({lista}) { // Aca traemos la lista de regalos, destructuri
           <li key={i}>
             <FontAwesomeIcon icon={faCandyCane} />
             {item}
-            <input onClick={() => removeItem(id)} value="borrar" />
-
+            <button onClick={() => removeItem(id)}>borrar</button>
           </li>
         ))}
       </>
