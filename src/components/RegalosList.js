@@ -12,10 +12,12 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
           <li key={i}>
             <FontAwesomeIcon icon={faCandyCane} />
             {item}
-            <input type="submit" value="Borrar" onClick={removeItem} />
-            <form onSubmit={removeItem}>
-              <input type="submit" value="Borrar" />
-            </form>
+            {/* <input type="submit" value="Borrar" onClick={removeItem} />
+            <form onSubmit={removeItem}> */}
+            <button onClick={() => removeItem(i)}>remove</button>
+
+            {/* <input type="button" value="Borrar" onClick={removeItem} /> */}
+            {/* </form> */}
           </li>
         ))}
       </>

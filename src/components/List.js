@@ -12,8 +12,8 @@ function List() {
   const [regalo, setRegalo] = useState({
     addGift: "",
     deleteGift: "",
-    gifs: ["Medias", "Vitel tone", "Caramelos"],
-    // gifs: [{id:"1", title:"Medias"}, {id:"2", title :"Vitel Tone"}, {id:"3", title : "Caramelos"}]
+    // gifs: ["Medias", "Vitel tone", "Caramelos"],
+    gifs: [{id:"1", title:"Medias"}, {id:"2", title :"Vitel Tone"}, {id:"3", title : "Caramelos"}]
   });
 
   function handleChange(e) {
@@ -24,11 +24,11 @@ function List() {
     e.preventDefault();
 
     let newObject = regalo.gifs;
-    newObject.pop(regalo.addGift);
+     newObject.filter((gift) => gift.id !== regalo.gifs.id);
     setRegalo({
       ...regalo,
       gifs: newObject,
-      addGift: "",
+      deleteGift: "",
     });
   };
 
