@@ -20,6 +20,20 @@ function List() {
     setRegalo({ ...regalo, addGift: e.target.value }); // mantiene lo que ya tiene y va agregando
   }
 
+    const removeItem = (e) => {
+          e.preventDefault();
+
+      let newObject = regalo.gifs;
+   newObject.pop(regalo.addGift);
+   setRegalo({
+     ...regalo,
+     gifs: newObject,
+     addGift: "",
+   });
+      // let newPeople = regalo.gifs.filter((regalo) => regalo.id !== id);
+      // setRegalo(newPeople);
+    };
+
   function handleSubmit(e) {
     e.preventDefault();
     let newContainer = regalo.gifs;
@@ -41,7 +55,8 @@ function List() {
               type="text"
               placeholder="Agrega regalo..."
               value={regalo.addGift}
-              onChange={handleChange}/>
+              onChange={handleChange}
+            />
             <input type="submit" value="Agregar" />
           </div>
         </form>
