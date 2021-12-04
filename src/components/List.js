@@ -20,19 +20,32 @@ function List() {
     setRegalo({ ...regalo, addGift: e.target.value }); // mantiene lo que ya tiene y va agregando
   }
 
-    const removeItem = (e) => {
-          e.preventDefault();
+  const removeItem = (e) => {
+    e.preventDefault();
 
-      let newObject = regalo.gifs;
-   newObject.pop(regalo.addGift);
-   setRegalo({
-     ...regalo,
-     gifs: newObject,
-     addGift: "",
-   });
-      // let newPeople = regalo.gifs.filter((regalo) => regalo.id !== id);
-      // setRegalo(newPeople);
-    };
+    let newObject = regalo.gifs;
+    newObject.pop(regalo.addGift);
+    setRegalo({
+      ...regalo,
+      gifs: newObject,
+      addGift: "",
+    });
+  };
+
+  // Opcion con indexOf()
+
+  //   const removeItem = (e) => {
+  //     e.preventDefault();
+  //     let newObject = regalo.gifs;
+  //     var index = newObject.indexOf(e.target.value); // Let's say it's Bob.
+  //     console.log(index)
+  //       delete newObject[index];
+  //     setRegalo({
+  //       ...regalo,
+  //       gifs: newObject,
+  //       addGift: "",
+  //     });
+  //   }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -61,7 +74,7 @@ function List() {
           </div>
         </form>
         <form onSubmit={removeItem}>
-          <input type="submit" value="Borrar" />
+          <input type="submit" value="Agregar" />
         </form>
         <ul>
           <RegalosList lista={regalo.gifs} />

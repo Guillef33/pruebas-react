@@ -13,6 +13,9 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
             <FontAwesomeIcon icon={faCandyCane} />
             {item}
             <input type="submit" value="Borrar" onClick={removeItem} />
+            <form onSubmit={removeItem}>
+              <input type="submit" value="Borrar" />
+            </form>
           </li>
         ))}
       </>
@@ -22,3 +25,4 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
     
 
 export default RegalosList;
+
