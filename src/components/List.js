@@ -60,6 +60,9 @@ function List() {
             <input type="submit" value="Agregar" />
           </div>
         </form>
+        <form onSubmit={removeItem}>
+          <input type="submit" value="Borrar" />
+        </form>
         <ul>
           <RegalosList lista={regalo.gifs} />
         </ul>
