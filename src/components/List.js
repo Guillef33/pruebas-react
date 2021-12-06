@@ -10,61 +10,56 @@ import props from "prop-types"; // Las props que va a recibir nuestro componente
 
 function List() {
   const [regalo, setRegalo] = useState({
-    addGift: "",
-    deleteGift: "",
+    addGift: "", // Propiedad addgift sin ningun valor
     // gifs: ["Medias", "Vitel tone", "Caramelos"],
     gifs: [
+      // 'Intenta agregar'
       { id: "1", title: "Medias" },
       { id: "2", title: "Vitel Tone" },
       { id: "3", title: "Caramelos" },
     ],
+    inicialState: 'Agrega un regalo'
   });
 
   function handleChange(e) {
     setRegalo({ ...regalo, addGift: e.target.value }); // mantiene lo que ya tiene y va agregando
   }
 
-  const removeItem = (id) => {
+  const removeItem = (item) => {
     let newObject = regalo.gifs;
-    newObject.filter((gift) => gift.id !== id);
+    newObject = newObject.filter((gift) => gift.id !== item.id); //guardamos el resultado del filtrado
     setRegalo({
-      ...regalo,
-      gifs: newObject,
-      deleteGift: "",
+      ...regalo,gifs: newObject,
     });
   };
 
-  // Opcion con indexOf()
 
-  //   const removeItem = (e) => {
-  //     e.preventDefault();
-  //     let newObject = regalo.gifs;
-  //     var index = newObject.indexOf(e.target.value); // Let's say it's Bob.
-  //     console.log(index)
-  //       delete newObject[index];
-  //     setRegalo({
-  //       ...regalo,
-  //       gifs: newObject,
-  //       addGift: "",
-  //     });
-  //   }
+  /// Revisar
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (regalo.gifs.length > 0) {
+      let newContainer = regalo.gifs;
+      newContainer[newContainer.length] = {
+      id: regalo.gifs.length + 1,
+      title: regalo.addGift,
+    };
+    setRegalo({
+    ...regalo,
+    gifs: newContainer,
+    addGift: "",
+  });
+    } else {
+      alert("Ingrese un texto");
+    }
+    // newContainer.push(regalo.addGift);
 
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   let newContainer = regalo.gifs;
-  //   newContainer.push(regalo.addGift);
-  //   setRegalo({
-  //     ...regalo,
-  //     gifs: newContainer,
-  //     addGift: "",
-  //   });
-  // }
+  }
 
   return (
     <div className="Lista">
       <div className="list-wrapper">
         <h2>Regalos:</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="addRegalo">
             <input
               type="text"
@@ -75,15 +70,15 @@ function List() {
             <input type="submit" value="Agregar" />
           </div>
         </form>
-        <form onSubmit={removeItem}>
-          <input type="submit" value="Agregar" />
-        </form>
         <ul>
-          <RegalosList lista={regalo.gifs} />
+          {
+            
+          }
+          <RegalosList lista={regalo.gifs} removeItem={removeItem} />
         </ul>
         <button
           className="btn"
-          onClick={() => setRegalo([])}
+          onClick={() =>setRegalo({...regalo, gifs: []})}
           style={{ width: "100%" }}
         >
           clear items

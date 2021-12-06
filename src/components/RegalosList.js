@@ -10,10 +10,10 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
         {lista.map((item, id) => (
           <li key={id}>
             <FontAwesomeIcon icon={faCandyCane} />
-            {item}
+            {item.title}
             {/* <input type="submit" value="Borrar" onClick={removeItem} />
             <form onSubmit={removeItem}> */}
-            <button onClick={() => removeItem(id)}>remove</button>
+            <button onClick={() => removeItem(item)}>remove</button>
 
             {/* <input type="button" value="Borrar" onClick={removeItem} /> */}
             {/* </form> */}
