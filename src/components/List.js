@@ -40,7 +40,7 @@ function List() {
   /// Revisar
   function handleSubmit(e) {
     e.preventDefault();
-    if (regalo.gifs.length > 0) {
+    if (regalo.gifs.length >= 0) {
       let newContainer = regalo.gifs;
       newContainer[newContainer.length] = {
         id: regalo.gifs.length + 1,
@@ -49,12 +49,11 @@ function List() {
       setRegalo({
         ...regalo,
         gifs: newContainer,
-        addGift: "",
+        addGift: "",inicialState: true,
       });
-      // } else {
-      //   alert("Ingrese un texto");
-      // }
-      // newContainer.push(regalo.addGift);
+      } else {
+        alert("Ingrese un texto");
+
     }
   }
 
