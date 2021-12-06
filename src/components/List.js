@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import RegalosList from "./RegalosList";
 import props from "prop-types"; // Las props que va a recibir nuestro componente si son requeridas o no
+import { faCandyCane } from "@fortawesome/free-solid-svg-icons";
+
+// Ver LifeCicle y como funciona el renderizado. 
+// Use Effect - Estado de vida en Class Component y funcional Component
 
 // Errores de compilacion
 // Cuando react se rompe
@@ -18,7 +22,7 @@ function List() {
       { id: "2", title: "Vitel Tone" },
       { id: "3", title: "Caramelos" },
     ],
-    inicialState: 'Agrega un regalo'
+    inicialState: false
   });
 
   function handleChange(e) {
@@ -29,7 +33,9 @@ function List() {
     let newObject = regalo.gifs;
     newObject = newObject.filter((gift) => gift.id !== item.id); //guardamos el resultado del filtrado
     setRegalo({
-      ...regalo,gifs: newObject,
+      ...regalo,
+      gifs: newObject,
+      inicialState: "",
     });
   };
 
@@ -47,12 +53,13 @@ function List() {
     ...regalo,
     gifs: newContainer,
     addGift: "",
+    inicialState: true
   });
-    } else {
-      alert("Ingrese un texto");
-    }
+    // } else {
+    //   alert("Ingrese un texto");
+    // }
     // newContainer.push(regalo.addGift);
-
+    }
   }
 
   return (
@@ -71,12 +78,17 @@ function List() {
           </div>
         </form>
         <ul>
-          {<RegalosList lista={regalo.InitialState} removeItem={removeItem} />}
-          <RegalosList lista={regalo.gifs} removeItem={removeItem} />
+          {regalo.inicialState === false ? (
+            <div className='empty-state'>
+            <h1>Agrega un producto</h1>
+            </div>
+          ) : (
+            <RegalosList lista={regalo.gifs} removeItem={removeItem} />
+          )}
         </ul>
         <button
           className="btn"
-          onClick={() => setRegalo({ ...regalo, gifs: [] })}
+          onClick={() => setRegalo({ ...regalo, gifs: [], inicialState: false })}
           style={{ width: "100%" }}
         >
           clear items
