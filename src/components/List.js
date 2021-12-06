@@ -17,7 +17,7 @@ function List() {
     addGift: "", // Propiedad addgift sin ningun valor
     // gifs: ["Medias", "Vitel tone", "Caramelos"],
     gifs: [
-      // 'Intenta agregar'
+      // 'Agrega todo
       { id: "1", title: "Medias" },
       { id: "2", title: "Vitel Tone" },
       { id: "3", title: "Caramelos" },
@@ -34,9 +34,7 @@ function List() {
     newObject = newObject.filter((gift) => gift.id !== item.id); //guardamos el resultado del filtrado
     setRegalo({
       ...regalo,
-      gifs: newObject,
-      inicialState: "",
-    });
+      gifs: newObject });
   };
 
 
