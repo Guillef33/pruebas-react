@@ -49,11 +49,13 @@ function List() {
       setRegalo({
         ...regalo,
         gifs: newContainer,
-        addGift: "",inicialState: true,
+        addGift: "",
+        inicialState: true,
       });
-      } else {
-        alert("Ingrese un texto");
+      //   } else {
+      //     alert("Ingrese un texto");
 
+      //
     }
   }
 
