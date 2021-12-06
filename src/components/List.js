@@ -71,14 +71,12 @@ function List() {
           </div>
         </form>
         <ul>
-          {
-            
-          }
+          {<RegalosList lista={regalo.InitialState} removeItem={removeItem} />}
           <RegalosList lista={regalo.gifs} removeItem={removeItem} />
         </ul>
         <button
           className="btn"
-          onClick={() =>setRegalo({...regalo, gifs: []})}
+          onClick={() => setRegalo({ ...regalo, gifs: [] })}
           style={{ width: "100%" }}
         >
           clear items
