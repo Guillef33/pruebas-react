@@ -81,6 +81,13 @@ function List() {
         <ul>
           <RegalosList lista={regalo.gifs} />
         </ul>
+        <button
+          className="btn"
+          onClick={() => setRegalo([])}
+          style={{ width: "100%" }}
+        >
+          clear items
+        </button>
       </div>
     </div>
   );

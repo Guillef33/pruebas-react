@@ -19,6 +19,7 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
             {/* </form> */}
           </li>
         ))}
+
       </>
     );
 };
