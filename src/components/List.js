@@ -3,7 +3,7 @@ import RegalosList from "./RegalosList";
 import props from "prop-types"; // Las props que va a recibir nuestro componente si son requeridas o no
 import { faCandyCane } from "@fortawesome/free-solid-svg-icons";
 
-// Ver LifeCicle y como funciona el renderizado. 
+// Ver LifeCicle y como funciona el renderizado.
 // Use Effect - Estado de vida en Class Component y funcional Component
 
 // Errores de compilacion
@@ -22,7 +22,6 @@ function List() {
       { id: "2", title: "Vitel Tone" },
       { id: "3", title: "Caramelos" },
     ],
-    inicialState: false
   });
 
   function handleChange(e) {
@@ -34,9 +33,9 @@ function List() {
     newObject = newObject.filter((gift) => gift.id !== item.id); //guardamos el resultado del filtrado
     setRegalo({
       ...regalo,
-      gifs: newObject });
+      gifs: newObject,
+    });
   };
-
 
   /// Revisar
   function handleSubmit(e) {
@@ -44,19 +43,18 @@ function List() {
     if (regalo.gifs.length > 0) {
       let newContainer = regalo.gifs;
       newContainer[newContainer.length] = {
-      id: regalo.gifs.length + 1,
-      title: regalo.addGift,
-    };
-    setRegalo({
-    ...regalo,
-    gifs: newContainer,
-    addGift: "",
-    inicialState: true
-  });
-    // } else {
-    //   alert("Ingrese un texto");
-    // }
-    // newContainer.push(regalo.addGift);
+        id: regalo.gifs.length + 1,
+        title: regalo.addGift,
+      };
+      setRegalo({
+        ...regalo,
+        gifs: newContainer,
+        addGift: "",
+      });
+      // } else {
+      //   alert("Ingrese un texto");
+      // }
+      // newContainer.push(regalo.addGift);
     }
   }
 
@@ -77,8 +75,8 @@ function List() {
         </form>
         <ul>
           {regalo.inicialState === false ? (
-            <div className='empty-state'>
-            <h1>Agrega un producto</h1>
+            <div className="empty-state">
+              <h1>Agrega un producto</h1>
             </div>
           ) : (
             <RegalosList lista={regalo.gifs} removeItem={removeItem} />
@@ -86,7 +84,9 @@ function List() {
         </ul>
         <button
           className="btn"
-          onClick={() => setRegalo({ ...regalo, gifs: [], inicialState: false })}
+          onClick={() =>
+            setRegalo({ ...regalo, gifs: [], inicialState: false })
+          }
           style={{ width: "100%" }}
         >
           clear items
