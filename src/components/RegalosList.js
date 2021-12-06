@@ -1,5 +1,4 @@
 import React, { useState} from "react";
-import List from './List';
 import { faCandyCane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -8,13 +7,13 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
 
     return (
       <>
-        {lista.map((item, i) => (
-          <li key={i}>
+        {lista.map((item, id) => (
+          <li key={id}>
             <FontAwesomeIcon icon={faCandyCane} />
             {item}
             {/* <input type="submit" value="Borrar" onClick={removeItem} />
             <form onSubmit={removeItem}> */}
-            <button onClick={() => removeItem(i)}>remove</button>
+            <button onClick={() => removeItem(id)}>remove</button>
 
             {/* <input type="button" value="Borrar" onClick={removeItem} /> */}
             {/* </form> */}
@@ -28,3 +27,7 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
 
 export default RegalosList;
 
+  // const removeItem = (id) => {
+  //   let newPeople = regalo.gifs.filter((rega) => rega.id !== id);
+  //   setRegalo(newPeople);
+  // };

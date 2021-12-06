@@ -13,18 +13,20 @@ function List() {
     addGift: "",
     deleteGift: "",
     // gifs: ["Medias", "Vitel tone", "Caramelos"],
-    gifs: [{id:"1", title:"Medias"}, {id:"2", title :"Vitel Tone"}, {id:"3", title : "Caramelos"}]
+    gifs: [
+      { id: "1", title: "Medias" },
+      { id: "2", title: "Vitel Tone" },
+      { id: "3", title: "Caramelos" },
+    ],
   });
 
   function handleChange(e) {
     setRegalo({ ...regalo, addGift: e.target.value }); // mantiene lo que ya tiene y va agregando
   }
 
-  const removeItem = (e) => {
-    e.preventDefault();
-
+  const removeItem = (id) => {
     let newObject = regalo.gifs;
-     newObject.filter((gift) => gift.id !== regalo.gifs.id);
+    newObject.filter((gift) => gift.id !== id);
     setRegalo({
       ...regalo,
       gifs: newObject,
@@ -47,22 +49,22 @@ function List() {
   //     });
   //   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    let newContainer = regalo.gifs;
-    newContainer.push(regalo.addGift);
-    setRegalo({
-      ...regalo,
-      gifs: newContainer,
-      addGift: "",
-    });
-  }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   let newContainer = regalo.gifs;
+  //   newContainer.push(regalo.addGift);
+  //   setRegalo({
+  //     ...regalo,
+  //     gifs: newContainer,
+  //     addGift: "",
+  //   });
+  // }
 
   return (
     <div className="Lista">
       <div className="list-wrapper">
         <h2>Regalos:</h2>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="addRegalo">
             <input
               type="text"
