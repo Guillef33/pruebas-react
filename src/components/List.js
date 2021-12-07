@@ -41,6 +41,9 @@ function List() {
   /// Revisar
   function handleSubmit(e) {
     e.preventDefault();
+
+
+
     if (regalo.gifs.length >= 0) {
       if (regalo.addGift === "") {
         alert("Debes agregar un titulo");
@@ -49,13 +52,12 @@ function List() {
         // }
       } else {
         let newContainer = regalo.gifs;
-        // console.log(newContainer);
-        // console.log(regalo.gifs[1].title);
-        // console.log(regalo.gifs[1].includes(regalo.gifs.title));
-        // if (newContainer.includes(regalo.addGift)) {
-        if (newContainer.indexOf(regalo.gifs) > -1) {
+        console.log(newContainer[0].id);
+        if 
+        (newContainer.filter((el) => el[0].id === id)) { // como agrego un console.logp para ver que tiene el?
           alert("Ese regalo esta repetido");
-        } else {
+        } 
+        else {
           newContainer[newContainer.length] = {
             id: regalo.gifs.length + 1,
             title: regalo.addGift,
@@ -70,6 +72,7 @@ function List() {
       }
     }
   }
+
 
   return (
     <div className="Lista">
