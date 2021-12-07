@@ -22,6 +22,7 @@ function List() {
       { id: "2", title: "Vitel Tone" },
       { id: "3", title: "Caramelos" },
     ],
+    inicialState:false
   });
 
   function handleChange(e) {
@@ -83,11 +84,11 @@ function List() {
             <>
               <RegalosList lista={regalo.gifs} removeItem={removeItem} />
               <button
-                className="btn-clear"
+                className="btn"
                 onClick={() =>
                   setRegalo({ ...regalo, gifs: [], inicialState: false })
                 }
-                style={{ width: "80%" }}
+                style={{ width: "80%", margin:"20px" }}
               >
                 clear items
               </button>

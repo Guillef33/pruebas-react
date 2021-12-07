@@ -25,14 +25,17 @@
 
 .list-wrapper {
   background-color: white;
-    height: 400px;
-    width: 400px;
+    min-height: 400px;
+    min-width: 400px;
     padding: 2em;
     text-align: center;
 }
 
 .Lista ul {
   list-style: none;
+      display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .Lista svg {
@@ -49,16 +52,21 @@ font-size: 4em;
 
 .Lista li {
  font-weight: regular;
+     display: flex;
+    justify-content: space-evenly;
 }
 
 .Lista .addRegalo {
   margin: 20px 0px;
+      display: flex;
+    justify-content: space-evenly;
 }
 
 .Lista input {
   border: 1px solid gray;
   padding: 10px;
   border-radius: 20px;
+  
 
 }
 
@@ -70,12 +78,6 @@ font-size: 4em;
   border-radius: 20px;
 }
 
-.Lista btn-clear {
-  border: 1px solid gray;
-    padding: 10px;
-  border: none;
-  border-radius: 20px;
-}
 
 .empty-state {
   padding: 4em;
