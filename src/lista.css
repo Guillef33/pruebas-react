@@ -25,7 +25,10 @@
 
 .list-wrapper {
   background-color: white;
-  padding: 4em;
+    height: 400px;
+    width: 400px;
+    padding: 2em;
+    text-align: center;
 }
 
 .Lista ul {
@@ -65,4 +68,15 @@ font-size: 4em;
   padding: 10px;
   border: none;
   border-radius: 20px;
+}
+
+.Lista btn-clear {
+  border: 1px solid gray;
+    padding: 10px;
+  border: none;
+  border-radius: 20px;
+}
+
+.empty-state {
+  padding: 4em;
 }

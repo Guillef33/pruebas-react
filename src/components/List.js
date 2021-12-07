@@ -41,6 +41,9 @@ function List() {
   function handleSubmit(e) {
     e.preventDefault();
     if (regalo.gifs.length >= 0) {
+      if (regalo.addGift === "") {
+        alert("Debes agregar un titulo");
+      } else {
       let newContainer = regalo.gifs;
       newContainer[newContainer.length] = {
         id: regalo.gifs.length + 1,
@@ -52,11 +55,8 @@ function List() {
         addGift: "",
         inicialState: true,
       });
-      //   } else {
-      //     alert("Ingrese un texto");
-
-      //
-    }
+    } 
+  }
   }
 
   return (
@@ -77,21 +77,23 @@ function List() {
         <ul>
           {regalo.inicialState === false ? (
             <div className="empty-state">
-              <h1>Agrega un producto</h1>
+              <p>Ahora puedes agregar regalos</p>
             </div>
           ) : (
-            <RegalosList lista={regalo.gifs} removeItem={removeItem} />
+            <>
+              <RegalosList lista={regalo.gifs} removeItem={removeItem} />
+              <button
+                className="btn-clear"
+                onClick={() =>
+                  setRegalo({ ...regalo, gifs: [], inicialState: false })
+                }
+                style={{ width: "80%" }}
+              >
+                clear items
+              </button>
+            </>
           )}
         </ul>
-        <button
-          className="btn"
-          onClick={() =>
-            setRegalo({ ...regalo, gifs: [], inicialState: false })
-          }
-          style={{ width: "100%" }}
-        >
-          clear items
-        </button>
       </div>
     </div>
   );
