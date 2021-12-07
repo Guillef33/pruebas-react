@@ -53,8 +53,8 @@ function List() {
       } else {
         let newContainer = regalo.gifs;
         console.log(newContainer[0].id);
-        if 
-        (newContainer.filter((el) => el[0].id === id)) { // como agrego un console.logp para ver que tiene el?
+        let containerSolo = newContainer.map((item, id) => (
+        if (item.filter((el) => el.id === regalo.gifs.id)) { // como agrego un console.logp para ver que tiene el?
           alert("Ese regalo esta repetido");
         } 
         else {
@@ -69,7 +69,7 @@ function List() {
             inicialState: true,
           });
         }
-      }
+      )
     }
   }
 
