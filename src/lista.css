@@ -53,13 +53,11 @@ font-size: 4em;
 .Lista li {
  font-weight: regular;
      display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .Lista .addRegalo {
   margin: 20px 0px;
-      display: flex;
-    justify-content: space-evenly;
 }
 
 .Lista input {

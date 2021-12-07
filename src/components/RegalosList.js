@@ -9,17 +9,13 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
       <>
         {lista.map((item, id) => (
           <li key={id}>
-            <FontAwesomeIcon icon={faCandyCane} />
-            {item.title}
-            {/* <input type="submit" value="Borrar" onClick={removeItem} />
-            <form onSubmit={removeItem}> */}
-            <button onClick={() => removeItem(item)}>remove</button>
-
-            {/* <input type="button" value="Borrar" onClick={removeItem} /> */}
-            {/* </form> */}
+            <div>
+              <FontAwesomeIcon icon={faCandyCane} />
+              {item.title}
+            </div>
+            <button onClick={() => removeItem(item)}>X</button>
           </li>
         ))}
-
       </>
     );
 };

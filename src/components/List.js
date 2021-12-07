@@ -19,10 +19,10 @@ function List() {
     gifs: [
       // 'Agrega todo
       { id: "1", title: "Medias" },
-      { id: "2", title: "Vitel Tone" },
-      { id: "3", title: "Caramelos" },
+      // { id: "2", title: "Vitel Tone" },
+      // { id: "3", title: "Caramelos" },
     ],
-    inicialState:false
+    inicialState: false,
   });
 
   function handleChange(e) {
@@ -44,20 +44,31 @@ function List() {
     if (regalo.gifs.length >= 0) {
       if (regalo.addGift === "") {
         alert("Debes agregar un titulo");
+        // } if (regalo.addGift.includes(regalo.gifs)) {
+        //   alert("Ese regalo esta repetido");
+        // }
       } else {
-      let newContainer = regalo.gifs;
-      newContainer[newContainer.length] = {
-        id: regalo.gifs.length + 1,
-        title: regalo.addGift,
-      };
-      setRegalo({
-        ...regalo,
-        gifs: newContainer,
-        addGift: "",
-        inicialState: true,
-      });
-    } 
-  }
+        let newContainer = regalo.gifs;
+        // console.log(newContainer);
+        // console.log(regalo.gifs[1].title);
+        // console.log(regalo.gifs[1].includes(regalo.gifs.title));
+        // if (newContainer.includes(regalo.addGift)) {
+        if (newContainer.indexOf(regalo.gifs) > -1) {
+          alert("Ese regalo esta repetido");
+        } else {
+          newContainer[newContainer.length] = {
+            id: regalo.gifs.length + 1,
+            title: regalo.addGift,
+          };
+          setRegalo({
+            ...regalo,
+            gifs: newContainer,
+            addGift: "",
+            inicialState: true,
+          });
+        }
+      }
+    }
   }
 
   return (
@@ -88,9 +99,9 @@ function List() {
                 onClick={() =>
                   setRegalo({ ...regalo, gifs: [], inicialState: false })
                 }
-                style={{ width: "80%", margin:"20px" }}
+                style={{ width: "80%", margin: "20px" }}
               >
-                clear items
+                Borrar todo
               </button>
             </>
           )}
