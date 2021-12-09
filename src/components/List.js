@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RegalosList from "./RegalosList";
 import props from "prop-types"; // Las props que va a recibir nuestro componente si son requeridas o no
 import { faCandyCane } from "@fortawesome/free-solid-svg-icons";
+import Counter from './Counter'
 
 // Ver LifeCicle y como funciona el renderizado.
 // Use Effect - Estado de vida en Class Component y funcional Component
@@ -25,6 +26,8 @@ function List() {
     inicialState: false,
   });
 
+
+
   function handleChange(e) {
     setRegalo({ ...regalo, addGift: e.target.value }); // mantiene lo que ya tiene y va agregando
   }
@@ -41,9 +44,6 @@ function List() {
   /// Revisar
   function handleSubmit(e) {
     e.preventDefault();
-
-
-
     if (regalo.gifs.length >= 0) {
       if (regalo.addGift === "") {
         alert("Debes agregar un titulo");
@@ -52,12 +52,12 @@ function List() {
         // }
       } else {
         let newContainer = regalo.gifs;
-        console.log(newContainer[0].id);
-        let containerSolo = newContainer.map((item, id) => (
-        if (item.filter((el) => el.id === regalo.gifs.id)) { // como agrego un console.logp para ver que tiene el?
-          alert("Ese regalo esta repetido");
-        } 
-        else {
+        // console.log(newContainer[0].id);
+        // let containerSolo = newContainer.map((item, id) => (
+        // if (item.filter((el) => el.id === regalo.gifs.id)) { // como agrego un console.logp para ver que tiene el?
+        //   alert("Ese regalo esta repetido");
+        // } 
+        // else {
           newContainer[newContainer.length] = {
             id: regalo.gifs.length + 1,
             title: regalo.addGift,
@@ -69,10 +69,8 @@ function List() {
             inicialState: true,
           });
         }
-      )
     }
   }
-
 
   return (
     <div className="Lista">
@@ -86,6 +84,7 @@ function List() {
               value={regalo.addGift}
               onChange={handleChange}
             />
+            <Counter />
             <input type="submit" value="Agregar" />
           </div>
         </form>
@@ -112,6 +111,6 @@ function List() {
       </div>
     </div>
   );
-}
+  }
 
 export default List;

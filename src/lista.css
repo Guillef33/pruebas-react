@@ -58,6 +58,8 @@ font-size: 4em;
 
 .Lista .addRegalo {
   margin: 20px 0px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .Lista input {
@@ -79,4 +81,17 @@ font-size: 4em;
 
 .empty-state {
   padding: 4em;
+}
+
+.counter-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.counter-wrapper button {
+  margin-right:5px;
+}
+
+.counter-wrapper div {
+  margin-right:5px;
 }
