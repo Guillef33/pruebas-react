@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RegalosList from "./RegalosList";
 import props from "prop-types"; // Las props que va a recibir nuestro componente si son requeridas o no
 import { faCandyCane } from "@fortawesome/free-solid-svg-icons";
-import Counter from './Counter'
+import Counter from "./Counter";
 
 // Ver LifeCicle y como funciona el renderizado.
 // Use Effect - Estado de vida en Class Component y funcional Component
@@ -14,61 +14,67 @@ import Counter from './Counter'
 // Errores que encontramos cuando el codigo no genera lo que buscamos, son los mas dificiles de buscar
 
 function List() {
+  const [cantidad, setCantidad] = useState(1);
+  
   const [regalo, setRegalo] = useState({
-    addGift: "", // Propiedad addgift sin ningun valor
-    // gifs: ["Medias", "Vitel tone", "Caramelos"],
+    addGift: "", // Llamarlo ultimoRegalo /////////////////////////////
     gifs: [
       // 'Agrega todo
-      { id: "1", title: "Medias" },
+      // { id: "1", title: "Medias" },
       // { id: "2", title: "Vitel Tone" },
       // { id: "3", title: "Caramelos" },
     ],
     inicialState: false,
   });
 
-
-
   function handleChange(e) {
+    // let value = (...regalo, gifs.title: e.target.value)
     setRegalo({ ...regalo, addGift: e.target.value }); // mantiene lo que ya tiene y va agregando
   }
 
   const removeItem = (item) => {
-    let newObject = regalo.gifs;
-    newObject = newObject.filter((gift) => gift.id !== item.id); //guardamos el resultado del filtrado
+    let prevRegalo = regalo.gifs;
+    prevRegalo = prevRegalo.filter((gift) => gift.id !== item.id); //guardamos el resultado del filtrado
     setRegalo({
       ...regalo,
-      gifs: newObject,
+      gifs: prevRegalo,
     });
+  };
+
+  const validarRepetidos = (gifs, addGift) => {
+    let response = -1;
+    gifs.forEach((el, index) => {
+      if (el.title.toUpperCase() === addGift.toUpperCase()) {
+        response = index;
+      }
+    });
+    return response;
   };
 
   /// Revisar
   function handleSubmit(e) {
     e.preventDefault();
     if (regalo.gifs.length >= 0) {
-      if (regalo.addGift === "") {
+      if (!regalo.addGift || regalo.addGift === " ") {
         alert("Debes agregar un titulo");
-        // } if (regalo.addGift.includes(regalo.gifs)) {
-        //   alert("Ese regalo esta repetido");
-        // }
+
+      } else if (validarRepetidos(regalo.gifs, regalo.addGift) !== -1) {
+        alert("Ese regalo esta repetido");
+
       } else {
         let newContainer = regalo.gifs;
-        // console.log(newContainer[0].id);
-        // let containerSolo = newContainer.map((item, id) => (
-        // if (item.filter((el) => el.id === regalo.gifs.id)) { // como agrego un console.logp para ver que tiene el?
-        //   alert("Ese regalo esta repetido");
-        // } 
-        // else {
-          newContainer[newContainer.length] = {
-            id: regalo.gifs.length + 1,
-            title: regalo.addGift,
-          };
-          setRegalo({
-            ...regalo,
-            gifs: newContainer,
-            addGift: "",
-            inicialState: true,
-          });
-        }
+        newContainer[newContainer.length] = {
+          id: regalo.gifs.length + 1,
+          title: regalo.addGift,
+          cantidad   /// aca estamos agregando un atributo al array gift, que es una constante del componente padre List. Y este atributo lo pasaremos como prop al componente hijo Counter
+        };
+        setRegalo({
+          ...regalo,
+          gifs: newContainer,
+          addGift: "",
+          inicialState: true
+        });
+      }
     }
   }
 
@@ -84,18 +90,21 @@ function List() {
               value={regalo.addGift}
               onChange={handleChange}
             />
-            <Counter />
+            <Counter 
+              cantidad = {cantidad}
+              setCantidad = {setCantidad} // aca estamos pasando la prop hacia el componente counter
+            />
             <input type="submit" value="Agregar" />
           </div>
         </form>
         <ul>
-          {regalo.inicialState === false ? (
+          {regalo.gifs.length === 0 ? ( // 0 elementos del array, esto aplica tanto para el boton de borrar como para el borrado
             <div className="empty-state">
               <p>Ahora puedes agregar regalos</p>
             </div>
           ) : (
             <>
-              <RegalosList lista={regalo.gifs} removeItem={removeItem} />
+              <RegalosList lista={regalo.gifs} removeItem={removeItem} /> {/* cambiar o unificar los nombres */}
               <button
                 className="btn"
                 onClick={() =>
@@ -111,6 +120,19 @@ function List() {
       </div>
     </div>
   );
-  }
+}
+
+/* 
+
+  const pressHandler = (id) => {
+    console.log(id);
+    const [regalo, setRegalo] = useState([])
+
+    let prevGifts = regalo.gifts;
+
+    setPeople((prevGifts) => {
+      return prevGifts.filter(gift => person.id  != id);
+    });
+  }; */
 
 export default List;
