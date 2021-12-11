@@ -18,4 +18,5 @@ function Counter({ cantidad, setCantidad }) { // aca viene la prop de List por p
   );
 }
 
+
 export default Counter;

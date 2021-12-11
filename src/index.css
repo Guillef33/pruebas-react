@@ -96,3 +96,11 @@ justify-content: center;
 .number-wrapper {
   background-color:var(--Very-dark-blue);
 }
+
+.regalo-cantidad-badge {
+    /* position: absolute;
+    left: 0px;
+    right: 350px;
+    top: 200px; */
+    color: red;
+  }

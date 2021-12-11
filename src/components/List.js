@@ -4,18 +4,18 @@ import props from "prop-types"; // Las props que va a recibir nuestro componente
 import { faCandyCane } from "@fortawesome/free-solid-svg-icons";
 import Counter from "./Counter";
 
-// Ver LifeCicle y como funciona el renderizado.
-// Use Effect - Estado de vida en Class Component y funcional Component
-
-// Errores de compilacion
-// Cuando react se rompe
-
-// Errores de ejecucion
-// Errores que encontramos cuando el codigo no genera lo que buscamos, son los mas dificiles de buscar
-
 function List() {
+
+  if (localStorage.getItem("Nuevo Regalo")) {
+    console.log("tenemos local storage");
+  } else {
+    console.log("No hay nada en el storage")
+  }
+
   const [cantidad, setCantidad] = useState(1);
-  
+
+  const regaloLocal = localStorage.getItem("Nuevo Regalo");
+
   const [regalo, setRegalo] = useState({
     addGift: "", // Llamarlo ultimoRegalo /////////////////////////////
     gifs: [
@@ -25,12 +25,26 @@ function List() {
       // { id: "3", title: "Caramelos" },
     ],
     inicialState: false,
+    regaloLocal
   });
 
   function handleChange(e) {
     // let value = (...regalo, gifs.title: e.target.value)
-    setRegalo({ ...regalo, addGift: e.target.value }); // mantiene lo que ya tiene y va agregando
+    setRegalo({ ...regalo, addGift: e.target.value, regaloLocal });
+    // mantiene lo que ya tiene y va agregando
+    // setRegalo(e.target.value);
   }
+
+  // const LocalStorage = value => {
+  //   try {
+  //     setRegalo(value)
+  //     window.localStorage.setItem ("Nuevo Regalo", value)
+  //     console.log(exito)
+  //     console.log(window.localStorage.setItem("Nuevo Regalo", value));
+  //     } catch (error) {
+  //       console.error(error)
+  //     }
+  // }
 
   const removeItem = (item) => {
     let prevRegalo = regalo.gifs;
@@ -57,23 +71,28 @@ function List() {
     if (regalo.gifs.length >= 0) {
       if (!regalo.addGift || regalo.addGift === " ") {
         alert("Debes agregar un titulo");
-
       } else if (validarRepetidos(regalo.gifs, regalo.addGift) !== -1) {
         alert("Ese regalo esta repetido");
-
       } else {
         let newContainer = regalo.gifs;
         newContainer[newContainer.length] = {
           id: regalo.gifs.length + 1,
           title: regalo.addGift,
-          cantidad   /// aca estamos agregando un atributo al array gift, que es una constante del componente padre List. Y este atributo lo pasaremos como prop al componente hijo Counter
+          cantidad, /// aca estamos agregando un atributo al array gift, que es una constante del componente padre List. Y este atributo lo pasaremos como prop al componente hijo Counter
         };
         setRegalo({
           ...regalo,
           gifs: newContainer,
           addGift: "",
-          inicialState: true
+          inicialState: true,
+          regaloLocal
+          // RegaloLocal: localStorage.getItem(
+          //   "Nuevo Regalo",
+          //   JSON.stringify(newContainer)
+          // ),
         });
+        localStorage.setItem("Nuevo Regalo", JSON.stringify(newContainer));
+        // JSON.parse(localStorage.getItem("Nuevo Regalo", JSON.stringify(newContainer)));
       }
     }
   }
@@ -90,9 +109,14 @@ function List() {
               value={regalo.addGift}
               onChange={handleChange}
             />
-            <Counter 
-              cantidad = {cantidad}
-              setCantidad = {setCantidad} // aca estamos pasando la prop hacia el componente counter
+            {/* <textarea
+              onChange={(e) => setLocalStorage(e.target.value)}
+              value={text}
+              placeholder="Probando el localstorage"
+            /> */}
+            <Counter
+              cantidad={cantidad}
+              setCantidad={setCantidad} // aca estamos pasando la prop hacia el componente counter
             />
             <input type="submit" value="Agregar" />
           </div>
@@ -104,7 +128,11 @@ function List() {
             </div>
           ) : (
             <>
-              <RegalosList lista={regalo.gifs} removeItem={removeItem} /> {/* cambiar o unificar los nombres */}
+              <RegalosList
+                lista={regalo.gifs}
+                removeItem={removeItem}
+              />{" "}
+              {/* cambiar o unificar los nombres */}
               <button
                 className="btn"
                 onClick={() =>
@@ -122,6 +150,8 @@ function List() {
   );
 }
 
+export default List;
+
 /* 
 
   const pressHandler = (id) => {
@@ -135,4 +165,20 @@ function List() {
     });
   }; */
 
-export default List;
+
+  // Ver LifeCicle y como funciona el renderizado.
+// Use Effect - Estado de vida en Class Component y funcional Component
+
+// Errores de compilacion
+// Cuando react se rompe
+
+// Errores de ejecucion
+// Errores que encontramos cuando el codigo no genera lo que buscamos, son los mas dificiles de buscar
+
+
+
+  // const [text, setText] = useState(
+  //   window.localStorage.getItem('text')
+  // )
+
+
