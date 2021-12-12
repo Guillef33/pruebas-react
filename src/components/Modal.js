@@ -2,6 +2,7 @@ import React from 'react';
 import Counter from './Counter';
 
 function Modal(
+  props,
   handleSubmit,
   handleChange,
   regalo,
@@ -10,11 +11,16 @@ function Modal(
   targetRegalo,
   display,
   diplayModal,
-  notDisplayModal
+  notDisplayModal,
+  show
 ) {
 
+  if (!props.show) {
+    return null
+  }
+
   return (
-    <>
+    <div  onClick={props.onClose}>
       <h2>Regalos:</h2>
       <form onSubmit={handleSubmit}>
         <div className="addRegalo">
@@ -34,10 +40,10 @@ function Modal(
             setCantidad={setCantidad} // aca estamos pasando la prop hacia el componente counter
           />
           <input type="submit" value="Agregar" />
-          <button onClick={notDisplayModal}>x</button>
+          <button onClick={props.onClose}>x</button>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

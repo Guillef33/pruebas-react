@@ -106,33 +106,33 @@ function List() {
     }
   }
 
-  const [show, setShow] = useState(true); 
+  const [show, setShow] = useState(false); 
 
-  const displayModal = () => {
-    // console.log('clic')
-    // let modal = document.getElementById('modal');
-    // modal.style.display = "block";
-    setShow(true);
-  }
+  // const displayModal = () => {
+  //   // console.log('clic')
+  //   // let modal = document.getElementById('modal');
+  //   // modal.style.display = "block";
+  //   setShow(true);
+  // }
   
-  const notDisplayModal = () => {
-    // document.getElementById("modal").style.display = "none";
-    setShow(false);
-  }
+  // const notDisplayModal = () => {
+  //   // document.getElementById("modal").style.display = "none";
+  //   setShow(false);
+  // }
 
   return (
-    <div className="Lista" onClick={notDisplayModal}>
+    <div className="Lista" onClick={props.onClose}>
       <div className="list-wrapper">
         <input
           type="submit"
           value="Mostrar Modal"
-          onClick={() => setShow((s) => !s)}
+          onClick={() => setShow(true)}
         />
-        <div className={show ? "hideModal" : "showModal"}>
-          <div className="modal">
-            <Modal />
-          </div>
+        {/* <div className={show ? "hideModal" : "showModal"}> */}
+        <div className="modal">
+          <Modal onClose={() => setShow(false)} show={show} />
         </div>
+        {/* </div> */}
 
         {/* <h2>Regalos:</h2>
         <form onSubmit={handleSubmit}>
