@@ -38,17 +38,6 @@ function List() {
     // setRegalo(e.target.value);
   }
 
-  // const LocalStorage = value => {
-  //   try {
-  //     setRegalo(value)
-  //     window.localStorage.setItem ("Nuevo Regalo", value)
-  //     console.log(exito)
-  //     console.log(window.localStorage.setItem("Nuevo Regalo", value));
-  //     } catch (error) {
-  //       console.error(error)
-  //     }
-  // }
-
   const removeItem = (item) => {
     let prevRegalo = regalo.gifs;
     prevRegalo = prevRegalo.filter((gift) => gift.id !== item.id); //guardamos el resultado del filtrado
@@ -67,12 +56,6 @@ function List() {
     });
     return response;
   };
-
-    // const [modalIsOpen, setModalIsOpen] = useState(false);
-
-    // const setModalIsOpenToTrue = () => {
-    //   setModalIsOpen(true);
-    // };
 
   /// Revisar
   function handleSubmit(e) {
