@@ -62,6 +62,12 @@ font-size: 4em;
   justify-content: space-between; */
 }
 
+.Lista .addRegaloEnModal {
+    margin: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .Lista input {
   border: 1px solid gray;
   padding: 10px;

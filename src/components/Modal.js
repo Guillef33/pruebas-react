@@ -23,7 +23,7 @@ function Modal(
     <div onClick={props.onClose}>
       <h2>Regalos:</h2>
       <form onSubmit={handleSubmit}>
-        <div className="addRegalo">
+        <div className="addRegaloEnModal">
           <input
             type="text"
             placeholder="Agrega regalo..."
