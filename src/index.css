@@ -104,3 +104,27 @@ justify-content: center;
     top: 200px; */
     color: red;
   }
+
+  .hideModal {
+    display: none;
+  }
+
+  .showModal {
+    display: block;
+  }
+
+  .modal {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    display: block;
+    padding: 2em;
+    min-width: 20em;
+    max-width: 70%;
+    color: #f00;
+    background-color: whitesmoke;
+    border-radius: 1em;
+    transform: translate(-50%, -50%);
+    outline: transparent;
+
+  }

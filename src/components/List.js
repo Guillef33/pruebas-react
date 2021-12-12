@@ -3,6 +3,7 @@ import RegalosList from "./RegalosList";
 import props from "prop-types"; // Las props que va a recibir nuestro componente si son requeridas o no
 import { faCandyCane } from "@fortawesome/free-solid-svg-icons";
 import Counter from "./Counter";
+import Modal from './Modal'
 
 function List() {
 
@@ -25,12 +26,13 @@ function List() {
       // { id: "3", title: "Caramelos" },
     ],
     inicialState: false,
-    regaloLocal
+    regaloLocal,
+    url: ""
   });
 
   function handleChange(e) {
     // let value = (...regalo, gifs.title: e.target.value)
-    setRegalo({ ...regalo, addGift: e.target.value, regaloLocal });
+    setRegalo({ ...regalo, addGift: e.target.value, regaloLocal: e.target.value, url: e.target.value });
     // mantiene lo que ya tiene y va agregando
     // setRegalo(e.target.value);
   }
@@ -65,6 +67,12 @@ function List() {
     return response;
   };
 
+    // const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    // const setModalIsOpenToTrue = () => {
+    //   setModalIsOpen(true);
+    // };
+
   /// Revisar
   function handleSubmit(e) {
     e.preventDefault();
@@ -85,7 +93,8 @@ function List() {
           gifs: newContainer,
           addGift: "",
           inicialState: true,
-          regaloLocal
+          regaloLocal,
+          url: ''
           // RegaloLocal: localStorage.getItem(
           //   "Nuevo Regalo",
           //   JSON.stringify(newContainer)
@@ -97,30 +106,55 @@ function List() {
     }
   }
 
+  const [show, setShow] = useState(true); 
+
+  const displayModal = () => {
+    // console.log('clic')
+    // let modal = document.getElementById('modal');
+    // modal.style.display = "block";
+    setShow(true);
+  }
+  
+  const notDisplayModal = () => {
+    // document.getElementById("modal").style.display = "none";
+    setShow(false);
+  }
+
   return (
-    <div className="Lista">
+    <div className="Lista" onClick={notDisplayModal}>
       <div className="list-wrapper">
-        <h2>Regalos:</h2>
+        <input
+          type="submit"
+          value="Mostrar Modal"
+          onClick={() => setShow((s) => !s)}
+        />
+        <div className={show ? "hideModal" : "showModal"}>
+          <div className="modal">
+            <Modal />
+          </div>
+        </div>
+
+        {/* <h2>Regalos:</h2>
         <form onSubmit={handleSubmit}>
           <div className="addRegalo">
             <input
               type="text"
               placeholder="Agrega regalo..."
-              value={regalo.addGift}
+              // value={regalo.addGift}
               onChange={handleChange}
             />
-            {/* <textarea
-              onChange={(e) => setLocalStorage(e.target.value)}
-              value={text}
-              placeholder="Probando el localstorage"
-            /> */}
+            <input
+              type="text"
+              placeholder="Agrega imagen..."
+              onChange={handleChange}
+            />
             <Counter
               cantidad={cantidad}
               setCantidad={setCantidad} // aca estamos pasando la prop hacia el componente counter
             />
             <input type="submit" value="Agregar" />
           </div>
-        </form>
+        </form> */}
         <ul>
           {regalo.gifs.length === 0 ? ( // 0 elementos del array, esto aplica tanto para el boton de borrar como para el borrado
             <div className="empty-state">
@@ -128,10 +162,7 @@ function List() {
             </div>
           ) : (
             <>
-              <RegalosList
-                lista={regalo.gifs}
-                removeItem={removeItem}
-              />{" "}
+              <RegalosList lista={regalo.gifs} removeItem={removeItem} />{" "}
               {/* cambiar o unificar los nombres */}
               <button
                 className="btn"
