@@ -11,9 +11,9 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
             <div>
               <FontAwesomeIcon icon={faCandyCane} />
               <span className="regalo-cantidad-badge">{item.cantidad}</span>
-              <div>{item.title}</div>
-              <img src={item.url} alt="imagen" className="imagen-input" />
-              <div>{item.dedicatoria}</div>
+              <div className="regalo-title">{item.title}</div>
+              <img src={item.url} alt="imagen" className="regalo-imagen" />
+              <div className="regalo-dedicatoria">{item.dedicatoria}</div>
             </div>
             <button onClick={() => removeItem(item)}>X</button>
           </li>

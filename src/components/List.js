@@ -32,9 +32,9 @@ function List() {
   });
 
   function handleChange(e) {
-    // let value = (...regalo, gifs.title: e.target.value)
-    setRegalo({ ...regalo, addGift: e.target.value, regaloLocal: e.target.value, url: e.target.value, dedicatoria: e.target.value }); //aca tengo un problema, porque es el mismo target value
-    // mantiene lo que ya tiene y va agregando
+    const { name, value } = e.target.value;
+    // setRegalo({ ...regalo, addGift: e.target.value, regaloLocal: e.target.value, url: "", dedicatoria: "" }); //aca tengo un problema, porque es el mismo target value
+    setRegalo({ ...regalo, [name]: value });// mantiene lo que ya tiene y va agregando
     // setRegalo(e.target.value);
   }
 
@@ -112,17 +112,7 @@ function List() {
 
   const [show, setShow] = useState(false); 
 
-  // const displayModal = () => {
-  //   // console.log('clic')
-  //   // let modal = document.getElementById('modal');
-  //   // modal.style.display = "block";
-  //   setShow(true);
-  // }
-  
-  // const notDisplayModal = () => {
-  //   // document.getElementById("modal").style.display = "none";
-  //   setShow(false);
-  // }
+
 
   return (
     <div className="Lista" onClick={props.onClose}>
@@ -144,8 +134,9 @@ function List() {
             <input
               type="text"
               placeholder="Agrega regalo..."
-              value={regalo.addGift}
+              value={regalo.addGift} // probe con default value, no funciono
               onChange={handleChange}
+              name="regalo"
             />
             <input
               type="text"
@@ -153,12 +144,14 @@ function List() {
               value={regalo.url}
               className="imagen-input"
               onChange={handleChange}
+              name="imagen"
             />
             <input
               type="text"
               placeholder="A quien se lo vas a regalar"
               value={regalo.dedicatoria}
               onChange={handleChange}
+              name="dedicatoria"
             />
             <Counter
               cantidad={cantidad}

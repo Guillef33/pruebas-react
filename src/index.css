@@ -129,6 +129,11 @@ justify-content: center;
 
   }
 
-  .imagen-input {
+  .regalo-imagen {
     width: 20%;
+  }
+
+  .regalo-dedicatoria {
+    color: gray;
+    font-size: 10px;
   }

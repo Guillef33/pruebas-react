@@ -57,6 +57,18 @@ function Modal(
 
 export default Modal;
 
+  // const displayModal = () => {
+  //   // console.log('clic')
+  //   // let modal = document.getElementById('modal');
+  //   // modal.style.display = "block";
+  //   setShow(true);
+  // }
+  
+  // const notDisplayModal = () => {
+  //   // document.getElementById("modal").style.display = "none";
+  //   setShow(false);
+  // }
+
         // <Modal
         //   display={false}
         //   // handleChange={handleChange}
