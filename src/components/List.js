@@ -27,12 +27,13 @@ function List() {
     ],
     inicialState: false,
     regaloLocal,
-    url: ""
+    url: "",
+    dedicatoria: ""
   });
 
   function handleChange(e) {
     // let value = (...regalo, gifs.title: e.target.value)
-    setRegalo({ ...regalo, addGift: e.target.value, regaloLocal: e.target.value, url: e.target.value });
+    setRegalo({ ...regalo, addGift: e.target.value, regaloLocal: e.target.value, url: e.target.value, dedicatoria: e.target.value }); //aca tengo un problema, porque es el mismo target value
     // mantiene lo que ya tiene y va agregando
     // setRegalo(e.target.value);
   }
@@ -86,7 +87,9 @@ function List() {
         newContainer[newContainer.length] = {
           id: regalo.gifs.length + 1,
           title: regalo.addGift,
+          url: regalo.url,
           cantidad, /// aca estamos agregando un atributo al array gift, que es una constante del componente padre List. Y este atributo lo pasaremos como prop al componente hijo Counter
+          dedicatoria: ""
         };
         setRegalo({
           ...regalo,
@@ -94,7 +97,8 @@ function List() {
           addGift: "",
           inicialState: true,
           regaloLocal,
-          url: ''
+          url: "",
+          dedicatoria: ""
           // RegaloLocal: localStorage.getItem(
           //   "Nuevo Regalo",
           //   JSON.stringify(newContainer)
@@ -129,23 +133,31 @@ function List() {
           onClick={() => setShow(true)}
         />
         {/* <div className={show ? "hideModal" : "showModal"}> */}
-        <div className="modal">
-          <Modal onClose={() => setShow(false)} show={show} />
-        </div>
+        {/* <div className="modal"> */}
+        <Modal onClose={() => setShow(false)} show={show} />
+        {/* </div> */}
         {/* </div> */}
 
-        {/* <h2>Regalos:</h2>
+        <h2>Regalos:</h2>
         <form onSubmit={handleSubmit}>
           <div className="addRegalo">
             <input
               type="text"
               placeholder="Agrega regalo..."
-              // value={regalo.addGift}
+              value={regalo.addGift}
               onChange={handleChange}
             />
             <input
               type="text"
               placeholder="Agrega imagen..."
+              value={regalo.url}
+              className="imagen-input"
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              placeholder="A quien se lo vas a regalar"
+              value={regalo.dedicatoria}
               onChange={handleChange}
             />
             <Counter
@@ -154,7 +166,7 @@ function List() {
             />
             <input type="submit" value="Agregar" />
           </div>
-        </form> */}
+        </form>
         <ul>
           {regalo.gifs.length === 0 ? ( // 0 elementos del array, esto aplica tanto para el boton de borrar como para el borrado
             <div className="empty-state">

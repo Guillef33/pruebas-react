@@ -20,7 +20,7 @@ function Modal(
   }
 
   return (
-    <div  onClick={props.onClose}>
+    <div onClick={props.onClose}>
       <h2>Regalos:</h2>
       <form onSubmit={handleSubmit}>
         <div className="addRegalo">
@@ -34,6 +34,14 @@ function Modal(
             type="text"
             placeholder="Agrega imagen..."
             // value={regalo.url}
+            className="imagen-input"
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            placeholder="A quien se lo vas a regalar"
+            // value={regalo.dedicatoria}
+            onChange={handleChange}
           />
           <Counter
             cantidad={cantidad}
