@@ -18,6 +18,7 @@ function RegalosList ({lista, removeItem}) { // Aca traemos la lista de regalos,
             <button onClick={() => removeItem(item)}>X</button>
           </li>
         ))}
+        {console.log(lista[0])}
       </>
     );
 };

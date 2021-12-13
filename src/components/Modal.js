@@ -1,54 +1,48 @@
 import React from 'react';
 import Counter from './Counter';
 
-function Modal(
-  props,
+function Modal({
   handleSubmit,
-  handleChange,
   regalo,
   cantidad,
   setCantidad,
-  targetRegalo,
-  display,
-  diplayModal,
-  notDisplayModal,
-  show
-) {
-
-  if (!props.show) {
-    return null
+  show,
+  onClose,
+  setUrl,
+  setDedicatoria,
+  setAddGift,
+}) {
+  if (!show) {
+    // si Show es falso, retorno nulo, no existe, no retorna nada.
+    return null;
   }
 
   return (
-    <div onClick={props.onClose}>
-      <h2>Regalos:</h2>
+    <div>
       <form onSubmit={handleSubmit}>
         <div className="addRegaloEnModal">
           <input
             type="text"
             placeholder="Agrega regalo..."
-            // value={regalo.addGift}
-            onChange={handleChange}
+            onChange={(e) => setAddGift(e.target.value)}
           />
           <input
             type="text"
             placeholder="Agrega imagen..."
-            // value={regalo.url}
             className="imagen-input"
-            onChange={handleChange}
+            onChange={(e) => setUrl(e.target.value)}
           />
           <input
             type="text"
             placeholder="A quien se lo vas a regalar"
-            // value={regalo.dedicatoria}
-            onChange={handleChange}
+            onChange={(e) => setDedicatoria(e.target.value)}
           />
           <Counter
             cantidad={cantidad}
             setCantidad={setCantidad} // aca estamos pasando la prop hacia el componente counter
           />
           <input type="submit" value="Agregar" />
-          <button onClick={props.onClose}>x</button>
+          <button onClick={onClose}>x</button>
         </div>
       </form>
     </div>

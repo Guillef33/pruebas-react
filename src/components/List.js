@@ -6,37 +6,38 @@ import Counter from "./Counter";
 import Modal from './Modal'
 
 function List() {
-
+  let localRegalos;
   if (localStorage.getItem("Nuevo Regalo")) {
-    console.log("tenemos local storage");
+    localRegalos = JSON.parse(localStorage.getItem("Nuevo Regalo"))
   } else {
     console.log("No hay nada en el storage")
   }
 
   const [cantidad, setCantidad] = useState(1);
 
-  const regaloLocal = localStorage.getItem("Nuevo Regalo");
-
   const [regalo, setRegalo] = useState({
-    addGift: "", // Llamarlo ultimoRegalo /////////////////////////////
-    gifs: [
-      // 'Agrega todo
-      // { id: "1", title: "Medias" },
-      // { id: "2", title: "Vitel Tone" },
-      // { id: "3", title: "Caramelos" },
-    ],
-    inicialState: false,
-    regaloLocal,
-    url: "",
-    dedicatoria: ""
+    addGift: "",
+    gifs: localRegalos ? localRegalos : [],
+    // inicialState: false,
+    // url: "",
+    // dedicatoria: ""
   });
 
-  function handleChange(e) {
-    const { name, value } = e.target.value;
-    // setRegalo({ ...regalo, addGift: e.target.value, regaloLocal: e.target.value, url: "", dedicatoria: "" }); //aca tengo un problema, porque es el mismo target value
-    setRegalo({ ...regalo, [name]: value });// mantiene lo que ya tiene y va agregando
-    // setRegalo(e.target.value);
-  }
+  const [url, setUrl] = useState()
+  const [dedicatoria, setDedicatoria] = useState()
+  const [addGift, setAddGift] = useState();
+
+
+  // function handleChange(e) {
+  //   // const { name, value } = e.target.value;
+  //    setRegalo({
+  //      ...regalo,
+  //      addGift: e.target.value,
+  //      url: e.target.value,
+  //      dedicatoria: e.target.value,
+  //    }); //aca tengo un problema, porque es el mismo target value
+  //   // setRegalo({ ...regalo, [name]: value });// mantiene lo que ya tiene y va agregando
+  // }
 
   const removeItem = (item) => {
     let prevRegalo = regalo.gifs;
@@ -45,6 +46,7 @@ function List() {
       ...regalo,
       gifs: prevRegalo,
     });
+    localStorage.setItem('Nuevo Regalo', JSON.stringify(prevRegalo)) // Sobreescribe el LocalStorage con el nuevo array actualizado luego de borrar
   };
 
   const validarRepetidos = (gifs, addGift) => {
@@ -61,7 +63,7 @@ function List() {
   function handleSubmit(e) {
     e.preventDefault();
     if (regalo.gifs.length >= 0) {
-      if (!regalo.addGift || regalo.addGift === " ") {
+      if (!addGift || addGift === " "){
         alert("Debes agregar un titulo");
       } else if (validarRepetidos(regalo.gifs, regalo.addGift) !== -1) {
         alert("Ese regalo esta repetido");
@@ -69,17 +71,16 @@ function List() {
         let newContainer = regalo.gifs;
         newContainer[newContainer.length] = {
           id: regalo.gifs.length + 1,
-          title: regalo.addGift,
-          url: regalo.url,
-          cantidad, /// aca estamos agregando un atributo al array gift, que es una constante del componente padre List. Y este atributo lo pasaremos como prop al componente hijo Counter
-          dedicatoria: ""
+          title: addGift,
+          url: url,
+          cantidad: cantidad, /// aca estamos agregando un atributo al array gift, que es una constante del componente padre List. Y este atributo lo pasaremos como prop al componente hijo Counter
+          dedicatoria: dedicatoria
         };
         setRegalo({
           ...regalo,
           gifs: newContainer,
           addGift: "",
           inicialState: true,
-          regaloLocal,
           url: "",
           dedicatoria: ""
           // RegaloLocal: localStorage.getItem(
@@ -87,6 +88,7 @@ function List() {
           //   JSON.stringify(newContainer)
           // ),
         });
+
         localStorage.setItem("Nuevo Regalo", JSON.stringify(newContainer));
         // JSON.parse(localStorage.getItem("Nuevo Regalo", JSON.stringify(newContainer)));
       }
@@ -105,44 +107,20 @@ function List() {
           value="Mostrar Modal"
           onClick={() => setShow(true)}
         />
-        {/* <div className={show ? "hideModal" : "showModal"}> */}
-        {/* <div className="modal"> */}
-        <Modal onClose={() => setShow(false)} show={show} />
-        {/* </div> */}
-        {/* </div> */}
+      <h2>Regalos:</h2>
 
-        <h2>Regalos:</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="addRegalo">
-            <input
-              type="text"
-              placeholder="Agrega regalo..."
-              value={regalo.addGift} // probe con default value, no funciono
-              onChange={handleChange}
-              name="regalo"
-            />
-            <input
-              type="text"
-              placeholder="Agrega imagen..."
-              value={regalo.url}
-              className="imagen-input"
-              onChange={handleChange}
-              name="imagen"
-            />
-            <input
-              type="text"
-              placeholder="A quien se lo vas a regalar"
-              value={regalo.dedicatoria}
-              onChange={handleChange}
-              name="dedicatoria"
-            />
-            <Counter
-              cantidad={cantidad}
-              setCantidad={setCantidad} // aca estamos pasando la prop hacia el componente counter
-            />
-            <input type="submit" value="Agregar" />
-          </div>
-        </form>
+        <Modal
+          onClose={() => setShow(false)}
+          show={show}
+          handleSubmit={handleSubmit}
+          regalo={regalo}
+          cantidad={cantidad}
+          setCantidad={setCantidad}
+          setUrl={setUrl}
+          setDedicatoria={setDedicatoria}
+          setAddGift={setAddGift}
+        />
+
         <ul>
           {regalo.gifs.length === 0 ? ( // 0 elementos del array, esto aplica tanto para el boton de borrar como para el borrado
             <div className="empty-state">
