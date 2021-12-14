@@ -102,7 +102,7 @@ function List() {
         <h2>Regalos:</h2>
         <input
           type="submit"
-          value="Mostrar Modal"
+          value="Agrega un nuevo regalo"
           onClick={() => setShow(true)}
         />
 
@@ -132,9 +132,9 @@ function List() {
                 onClick={() =>
                   setRegalo({ ...regalo, gifs: [], inicialState: false })
                 }
-                style={{ width: "80%", margin: "20px" }}
+                style={{ width: "90%", margin: "20px" }}
               >
-                Borrar todo
+                Borra todos los regalos
               </button>
             </>
           )}
