@@ -71,19 +71,34 @@ function List() {
           inicialState: true,
           url: "",
           dedicatoria: ""
-          // RegaloLocal: localStorage.getItem(
-          //   "Nuevo Regalo",
-          //   JSON.stringify(newContainer)
-          // ),
         });
 
         localStorage.setItem("Nuevo Regalo", JSON.stringify(newContainer));
-        // JSON.parse(localStorage.getItem("Nuevo Regalo", JSON.stringify(newContainer)));
       }
     }
   }
 
   const [show, setShow] = useState(false); 
+
+  function editItem (id) {
+    let nuevoId = id
+    console.log(nuevoId)
+     setShow(true)
+    // return (
+    //   <Modal
+    //     onClose={() => setShow(false)}
+    //     show={show}
+    //     handleSubmit={handleSubmit}
+    //     regalo={regalo}
+    //     cantidad={cantidad}
+    //     setCantidad={setCantidad}
+    //     setUrl={setUrl}
+    //     setDedicatoria={setDedicatoria}
+    //     setAddGift={setAddGift}
+    //   />
+    // );
+
+  }
 
 
 
@@ -116,7 +131,7 @@ function List() {
             </div>
           ) : (
             <>
-              <RegalosList lista={regalo.gifs} removeItem={removeItem} />{" "}
+              <RegalosList lista={regalo.gifs} removeItem={removeItem} editItem={editItem} />{" "}
               {/* cambiar o unificar los nombres */}
               <button
                 className="btn"

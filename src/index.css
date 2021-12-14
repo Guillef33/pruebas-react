@@ -104,6 +104,12 @@ justify-content: center;
     top: 200px; */
     color: red;
   }
+.regalo-card {
+  display: flex;
+justify-content: space-around;
+align-items: center;
+}
+
 
   .hideModal {
     display: none;
