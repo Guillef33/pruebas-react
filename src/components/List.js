@@ -27,18 +27,6 @@ function List() {
   const [dedicatoria, setDedicatoria] = useState()
   const [addGift, setAddGift] = useState();
 
-
-  // function handleChange(e) {
-  //   // const { name, value } = e.target.value;
-  //    setRegalo({
-  //      ...regalo,
-  //      addGift: e.target.value,
-  //      url: e.target.value,
-  //      dedicatoria: e.target.value,
-  //    }); //aca tengo un problema, porque es el mismo target value
-  //   // setRegalo({ ...regalo, [name]: value });// mantiene lo que ya tiene y va agregando
-  // }
-
   const removeItem = (item) => {
     let prevRegalo = regalo.gifs;
     prevRegalo = prevRegalo.filter((gift) => gift.id !== item.id); //guardamos el resultado del filtrado
@@ -56,7 +44,7 @@ function List() {
         response = index;
       }
     });
-    return response;
+      return response;
   };
 
   /// Revisar
@@ -102,12 +90,12 @@ function List() {
   return (
     <div className="Lista" onClick={props.onClose}>
       <div className="list-wrapper">
+        <h2>Regalos:</h2>
         <input
           type="submit"
           value="Mostrar Modal"
           onClick={() => setShow(true)}
         />
-      <h2>Regalos:</h2>
 
         <Modal
           onClose={() => setShow(false)}

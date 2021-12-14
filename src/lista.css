@@ -25,7 +25,7 @@
 
 .list-wrapper {
   background-color: white;
-    width: 800px;
+    width: 400px;
     height: 80vh;
     padding: 2em;
     text-align: center;
@@ -65,7 +65,8 @@ font-size: 4em;
 .Lista .addRegaloEnModal {
     margin: 20px 0px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .Lista input {
@@ -73,8 +74,8 @@ font-size: 4em;
   padding: 10px;
   border-radius: 20px;
   display: block;
-  
-
+  margin: 10px auto;
+      width: 80%;
 }
 
 .Lista button {
@@ -84,6 +85,11 @@ font-size: 4em;
   border: none;
   border-radius: 20px;
       max-height: 40px;
+      margin: 10px auto;
+}
+
+.button-counter {
+  margin: auto;
 }
 
 
@@ -94,12 +100,31 @@ font-size: 4em;
 .counter-wrapper {
   display: flex;
   align-items: center;
+    justify-content: center;
 }
 
-.counter-wrapper button {
+/* .counter-wrapper button {
   margin-right:5px;
-}
+} */
 
 .counter-wrapper div {
   margin-right:5px;
+}
+
+.modal-container {
+  background-color: whitesmoke;
+position: absolute;
+    left: 0px;
+    top: 0;
+    height: 100vh;
+    width: 30%;
+    display: flex;
+align-items: center;
+transition: all 0.3s ease;
+
+}
+
+.button-cerrar {
+  width: 200px;
+  margin: 10px auto;
 }
