@@ -78,26 +78,12 @@ function List() {
     }
   }
 
-  const [show, setShow] = useState(false); 
+  const [show, setShow] = useState(false);  // tener cuidado porque si se utiliza show en otro elemento lo puede mostrar, usar showModal
 
   function editItem (id) {
     let nuevoId = id
     console.log(nuevoId)
-     setShow(true)
-    // return (
-    //   <Modal
-    //     onClose={() => setShow(false)}
-    //     show={show}
-    //     handleSubmit={handleSubmit}
-    //     regalo={regalo}
-    //     cantidad={cantidad}
-    //     setCantidad={setCantidad}
-    //     setUrl={setUrl}
-    //     setDedicatoria={setDedicatoria}
-    //     setAddGift={setAddGift}
-    //   />
-    // );
-
+    setShow(true) // pasa a true el modal y entonces lo muestra
   }
 
 
