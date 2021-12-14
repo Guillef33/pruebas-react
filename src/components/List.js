@@ -18,6 +18,7 @@ function List() {
   const [regalo, setRegalo] = useState({
     addGift: "",
     gifs: localRegalos ? localRegalos : [],
+    metodo: 'agregar'
     // inicialState: false,
     // url: "",
     // dedicatoria: ""
@@ -62,7 +63,8 @@ function List() {
           title: addGift,
           url: url,
           cantidad: cantidad, /// aca estamos agregando un atributo al array gift, que es una constante del componente padre List. Y este atributo lo pasaremos como prop al componente hijo Counter
-          dedicatoria: dedicatoria
+          dedicatoria: dedicatoria,
+          metodo: 'agregar'
         };
         setRegalo({
           ...regalo,
@@ -70,7 +72,8 @@ function List() {
           addGift: "",
           inicialState: true,
           url: "",
-          dedicatoria: ""
+          dedicatoria: "",
+          metodo: 'agregar'
         });
 
         localStorage.setItem("Nuevo Regalo", JSON.stringify(newContainer));
@@ -80,10 +83,15 @@ function List() {
 
   const [show, setShow] = useState(false);  // tener cuidado porque si se utiliza show en otro elemento lo puede mostrar, usar showModal
 
-  function editItem (id) {
-    let nuevoId = id
-    console.log(nuevoId)
-    setShow(true) // pasa a true el modal y entonces lo muestra
+  function editItem(id) {
+    let nuevoId = id;
+    console.log(nuevoId);
+    setRegalo({
+      ...regalo,
+      id,
+      metodo: "editar",
+    });
+    setShow(true); // pasa a true el modal y entonces lo muestra
   }
 
 

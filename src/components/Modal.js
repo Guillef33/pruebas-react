@@ -21,7 +21,11 @@ function Modal({
     <div className="modal-container">
       <form onSubmit={handleSubmit}>
         <div className="addRegaloEnModal">
-          <h3>Agrega un nuevo regalo, una imagen y una dedicatoria</h3>
+          {regalo.metodo === "agregar" ? (
+            <h3>Agrega un nuevo regalo, una imagen y una dedicatoria</h3>
+          ) : (
+            <h3>Edita el regalo, una imagen y una dedicatoria</h3>
+          )}
           <input
             type="text"
             placeholder="Agrega regalo..."
@@ -42,8 +46,13 @@ function Modal({
             cantidad={cantidad}
             setCantidad={setCantidad} // aca estamos pasando la prop hacia el componente counter
           />
-          <input type="submit" value="Agregar" />
-          <button className="button-cerrar" onClick={onClose}>Cerrar este modal</button>
+          {regalo.metodo === "agregar" ? (
+            <input type="submit" value="Agregar" />
+          )  : ( <input type="submit" value="Editar" />
+          )}
+            <button className="button-cerrar" onClick={onClose} metodo={regalo.metodo = 'agregar'}>
+            Cerrar este modal
+          </button>
         </div>
       </form>
     </div>
