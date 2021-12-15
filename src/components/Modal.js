@@ -30,6 +30,7 @@ function Modal({
             type="text"
             placeholder="Agrega regalo..."
             onChange={(e) => setAddGift(e.target.value)}
+            autoFocus
           />
           <input
             type="text"
@@ -48,9 +49,14 @@ function Modal({
           />
           {regalo.metodo === "agregar" ? (
             <input type="submit" value="Agregar" />
-          )  : ( <input type="submit" value="Editar" />
+          ) : (
+            <input type="submit" value="Editar" />
           )}
-            <button className="button-cerrar" onClick={onClose} metodo={regalo.metodo = 'agregar'}>
+          <button
+            className="button-cerrar"
+            onClick={onClose}
+            metodo={(regalo.metodo = "agregar")}
+          >
             Cerrar este modal
           </button>
         </div>

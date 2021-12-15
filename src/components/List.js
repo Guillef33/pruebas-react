@@ -86,15 +86,19 @@ function List() {
   function editItem(id) {
     let nuevoId = id;
     console.log(nuevoId);
+
+    let editRegalo = regalo.gifs;
+    editRegalo = editRegalo.filter((gift) => gift.id !== id.id); //guardamos el resultado del filtrado
+    console.log(id);
+    console.log(editRegalo)
     setRegalo({
       ...regalo,
-      id,
-      metodo: "editar",
-    });
-    setShow(true); // pasa a true el modal y entonces lo muestra
-  }
-
-
+      gifs: editRegalo,
+      id: id,
+      metodo: "editar"
+    });  
+    setShow(true);
+    } 
 
   return (
     <div className="Lista" onClick={props.onClose}>
@@ -104,6 +108,7 @@ function List() {
           type="submit"
           value="Agrega un nuevo regalo"
           onClick={() => setShow(true)}
+          autoFocus
         />
 
         <Modal
@@ -125,7 +130,11 @@ function List() {
             </div>
           ) : (
             <>
-              <RegalosList lista={regalo.gifs} removeItem={removeItem} editItem={editItem} />{" "}
+              <RegalosList
+                lista={regalo.gifs}
+                removeItem={removeItem}
+                editItem={editItem}
+              />{" "}
               {/* cambiar o unificar los nombres */}
               <button
                 className="btn"
