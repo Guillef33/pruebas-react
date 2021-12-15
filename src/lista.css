@@ -54,6 +54,7 @@ font-size: 4em;
  font-weight: regular;
      display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .Lista .addRegalo {
