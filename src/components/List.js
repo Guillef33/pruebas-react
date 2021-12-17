@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RegalosList from "./RegalosList";
 import props from "prop-types"; // Las props que va a recibir nuestro componente si son requeridas o no
 import { faCandyCane } from "@fortawesome/free-solid-svg-icons";
@@ -23,6 +23,10 @@ function List() {
     // url: "",
     // dedicatoria: ""
   });
+
+  useEffect(() => {
+  //  api.regalo.gifs().then(regalo => setRegalo(regalo))
+    }, [])
 
   const [url, setUrl] = useState()
   const [dedicatoria, setDedicatoria] = useState()
