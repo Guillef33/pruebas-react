@@ -6,7 +6,7 @@ const STATUS = {
   STOPPED: "Stopped",
 };
 
-const INITIAL_COUNT = 172800;
+const INITIAL_COUNT = 86400;
 
 export default function CountdownApp() {
   const [secondsRemaining, setSecondsRemaining] = useState(INITIAL_COUNT);
