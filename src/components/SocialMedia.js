@@ -1,7 +1,7 @@
 import React from "react";
 import "../index.css";
 
-import Countdown from './Countdowm'
+import Timer from './Timer'
 
 import Facebook from "../icon-facebook.svg";
 import Instagram from "../icon-instagram.svg";
@@ -14,7 +14,8 @@ function SocialMedia() {
     <div className="App">
      <div className="social-media-container">
         <h2>We are launching soon </h2>
-          <Countdown />
+          {/* <Countdown /> */}
+          <Timer />
         <ul>
           <li>
             <img src={Facebook} className="FacebookIcon" alt="img1"></img>
