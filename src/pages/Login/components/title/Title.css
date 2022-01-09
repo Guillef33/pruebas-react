@@ -1,0 +1,10 @@
+.title-container {
+    color: tomato;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+

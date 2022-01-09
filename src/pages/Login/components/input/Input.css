@@ -1,0 +1,16 @@
+input {
+    display: block;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: white;
+}
+
+.input-error {
+    border: 4px solid red;
+    color: red;
+}
+
+.input-error::placeholder {
+    color: red;
+}

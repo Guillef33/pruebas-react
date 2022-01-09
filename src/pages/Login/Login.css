@@ -1,0 +1,19 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 40%;
+    margin: auto;
+    height: 900px;
+    background-color: cadetblue;
+}
+
+button {
+    margin-top: 20px;
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+}
