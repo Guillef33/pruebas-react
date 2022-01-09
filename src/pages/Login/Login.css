@@ -1,13 +1,17 @@
 .login-container {
-    display: flex;
+
+    margin: auto;
+    height: 900px;
+    background-color: cadetblue;
+}
+
+.login-content {
+    text-align: center;
+        display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     align-items: center;
-    width: 40%;
-    margin: auto;
-    height: 900px;
-    background-color: cadetblue;
 }
 
 button {

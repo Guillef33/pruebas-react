@@ -15,10 +15,10 @@ function App() {
   return (
     <div>
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Home />} />
         <Route path="/countdowm" element={<SocialMedia />} />
         <Route path="/list" element={<List />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/form" element={<Form />} />
       </Routes>
     </div>
