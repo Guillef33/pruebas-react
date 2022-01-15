@@ -9,6 +9,10 @@ import Timer from './components/Timer';
 import Form from './components/Form';
 import Home from './components/Home';
 import Login from './pages/Login/Login'
+import Users from './components/User';
+
+import User from "./components/User";
+
 
 
 function App() {
@@ -20,6 +24,7 @@ function App() {
         <Route path="/list" element={<List />} />
         <Route path="/login" element={<Login />} />
         <Route path="/form" element={<Form />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </div>
   );
